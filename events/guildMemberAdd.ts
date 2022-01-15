@@ -21,7 +21,11 @@ export default async (client: Client, instance: WOKCommands) => {
             .setColor(0xFF0000)
             .setFooter('CrossBan | Made by GateLogicLive#0001')
 
-            member.send({ embeds: [banEmbed] })
+            try {
+                member.send({embeds: [banEmbed]})
+            } catch {
+                return console.log('User has disable DM')
+            }
 
             if (user._id === member.id) {
                 member.ban({reason: 'On global ban list.'})

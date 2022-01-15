@@ -69,7 +69,11 @@ export default {
             .setColor(0xFF0000)
             .setFooter('CrossBan | Made by GateLogicLive#0001');
 
-            target?.send({embeds: [banEmbed]})
+            try {
+                target?.send({embeds: [banEmbed]})
+            } catch {
+                return console.log('User has disable DM')
+            }
 
             try{
                 const ban = new banSchema({
@@ -91,7 +95,11 @@ export default {
             .setColor(0xFF0000)
             .setFooter('CrossBan | Made by GateLogicLive#0001');
 
-            target?.send({embeds: [banEmbed]})
+            try {
+                target?.send({embeds: [banEmbed]})
+            } catch {
+                return console.log('User has disable DM')
+            }
 
             target?.ban({reason: reason!})
         }

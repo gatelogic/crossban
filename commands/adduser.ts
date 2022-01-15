@@ -9,6 +9,7 @@ export default {
 
     permissions: ['BAN_MEMBERS'],
     guildOnly: true,
+    ownerOnly: true,
 
     minArgs: 2,
     expectedArgs: '<user> <reason>',
