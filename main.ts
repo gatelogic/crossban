@@ -25,16 +25,10 @@ client.on('ready', async () => {
         testServers: ['930861209723502672'],
         botOwners: ['701561771529470074'],
         disabledDefaultCommands: [
-            // 'help',
             'command',
-            // 'language',
-            // 'prefix',
-            // 'requiredrole',
-            // 'channelonly'
             'slash'
         ],
     })
-    .setDefaultPrefix('&')
 });
 
 client.login(process.env.TOKEN);
