@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "discord.js": "^13.5.1",
+    "dotenv": "^11.0.0",
+    "mongoose": "^6.1.6",
+    "wokcommands": "^1.5.3"
+  },
+  "name": "crossban",
+  "version": "0.1.0",
+  "description": "A Discord bot to syncronise bans with controls in place to prevent abuse.",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon main.ts"
+  },
+  "author": "GateLogicLive",
+  "license": "ISC"
+}
