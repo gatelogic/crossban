@@ -83,7 +83,7 @@ export default {
         
                 await ban.save();
             } catch{
-                return ctx.editReply('You are not a permitted user. Please join https://discord.gg/FJBcNT6zbF and open a ticket to get the user banned. If an emergency DM GateLogicLive#0001')
+                return console.log('user in database')
             } 
 
             client.guilds.cache.forEach(a => a.members.ban(target!, {reason: reason!}))
