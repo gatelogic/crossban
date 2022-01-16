@@ -2,6 +2,7 @@ import { Permissions, MessageEmbed, Constants } from 'discord.js';
 import { Mongoose } from 'mongoose';
 import { ICommand } from 'wokcommands';
 import banSchema from '../models/ban-schema';
+import allowed from '../permitted_users.json';
 
 export default {
     category: 'Moderation',
@@ -52,17 +53,15 @@ export default {
 
         const target = await guild!.members.cache.get(user!.id);
 
-        const embed = new MessageEmbed()
-            .setTitle(`${user!.tag} has been banned.`)
-            .setDescription(`**Reason:** ${reason}`)
-            .setColor(0xFF0000)
-            .setFooter('CrossBan | Made by GateLogicLive#0001');
-
-        await ctx.editReply({ embeds: [embed] });
-
         // target?.ban({ reason: reason! })
 
         if (global) {
+            const ids = allowed.ids;
+            if (ids.indexOf(ctx.user.id) === -1) {
+                return console.log('User not allowed')
+            }
+            
+            
             const banEmbed = new MessageEmbed()
             .setTitle('You have been banned.')
             .setDescription(`You have been banned globally. This means you have been banned in all servers that use CrossBan. \n\n**Reason**: ${reason}\nIf you want to appeal this please fill out the form below. The bot will DM you within 7 days with a result.\nAppeals Form: `)
@@ -84,7 +83,7 @@ export default {
         
                 await ban.save();
             } catch{
-                return 
+                return ctx.editReply('You are not a permitted user. Please join https://discord.gg/FJBcNT6zbF and open a ticket to get the user banned. If an emergency DM GateLogicLive#0001')
             } 
 
             client.guilds.cache.forEach(a => a.members.ban(target!, {reason: reason!}))
@@ -103,5 +102,13 @@ export default {
 
             target?.ban({reason: reason!})
         }
+
+        const embed = new MessageEmbed()
+            .setTitle(`${user!.tag} has been banned.`)
+            .setDescription(`**Reason:** ${reason}`)
+            .setColor(0xFF0000)
+            .setFooter('CrossBan | Made by GateLogicLive#0001');
+
+        await ctx.editReply({ embeds: [embed] });
     }
 } as ICommand
